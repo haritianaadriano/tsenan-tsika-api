@@ -7,7 +7,7 @@ export class Product {
   id: string;
   @Column()
   name: string;
-  @Column()
+  @Column('text')
   status: ProductStatus;
   @Column()
   description: string;
