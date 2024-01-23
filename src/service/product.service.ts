@@ -4,7 +4,7 @@ import { Product } from "src/model/product.entity";
 import { Repository } from "typeorm";
 
 @Injectable()
-export class UserService {
+export class ProductService {
     constructor(
         @InjectRepository(Product)
         private productRepository: Repository<Product>,
