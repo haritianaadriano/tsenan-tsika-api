@@ -89,7 +89,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Product'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
       responses:
         '200':
           description: List of filtered products.
@@ -192,13 +194,13 @@ components:
       enum:
         - ENABLED
         - SOLD
-        -
+        
     ## resource model
     ProductInfo:
       properties:
         name:
           type: string
-        creation_datetime:
+        creationDatetime:
           type: string
           format: date-time
     Product:
@@ -213,7 +215,7 @@ components:
           type: string
         price:
           type: integer
-        updated_datetime:
+        updatedDatetime:
           type: string
           format: date-time
     ## exception model
