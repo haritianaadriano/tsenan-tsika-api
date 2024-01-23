@@ -89,7 +89,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Product'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
       responses:
         '200':
           description: List of filtered products.
@@ -192,7 +194,7 @@ components:
       enum:
         - ENABLED
         - SOLD
-        -
+        
     ## resource model
     ProductInfo:
       properties:
