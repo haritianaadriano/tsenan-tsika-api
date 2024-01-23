@@ -1,4 +1,4 @@
 export enum ProductStatus {
-    ENABLED,
-    SOLD
+  ENABLED,
+  SOLD,
 }

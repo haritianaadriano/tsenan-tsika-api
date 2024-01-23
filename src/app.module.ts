@@ -12,8 +12,11 @@ import { ConfigModule } from '@nestjs/config';
     ProductModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: process.env.DATABASE_URL,
+      host: process.env.DATABASE_URL,
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
       entities: [Product],
+      synchronize: true,
     }),
   ],
   controllers: [AppController],
