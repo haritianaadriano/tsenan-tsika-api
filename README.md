@@ -1,4 +1,4 @@
-Simple api for (e-commerce)[https://e-commerce-git-dev-abi-nfs-projects.vercel.app/] web.
+Simple api for [e-commerce](https://e-commerce-git-dev-abi-nfs-projects.vercel.app/) web.
 
 ## Usage:
  
