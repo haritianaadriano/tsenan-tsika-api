@@ -26,6 +26,7 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/typeorm": "^10.0.1",
     "dotenv": "^16.3.2",
+    "jest-mock": "^29.7.0",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
