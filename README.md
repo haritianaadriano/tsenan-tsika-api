@@ -12,5 +12,5 @@ Simple api for [e-commerce](https://e-commerce-git-dev-abi-nfs-projects.vercel.a
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
  ```
-
+ 
  - An examole of .env file is define in ``` .env.txt ``` and just remove the .txt extension
