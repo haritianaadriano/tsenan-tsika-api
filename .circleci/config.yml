@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@5.1.0
 jobs:
-  build-and-test:
+  build_and_test:
     executor:
       name: node/default
     steps:
@@ -10,18 +10,24 @@ jobs:
       - node/install-packages
       - run:
           command: npm run test
-  build-and-e2e:
+  build_and_e2e:
+    docker:
+      - image: cimg/node:21.6.1
+      - image: cimg/postgers:14.0
     executor:
       name: node/default
     steps:
       - checkout
+      - run: sudo apt-get update
+      - run: sudo apt-get install postgresql-client
+      - run: whoami
       - node/install-packages
       - run:
           command: npm run test:e2e        
 workflows:
-  build-and-test:
+  build_and_test:
     jobs:
-      - build-and-test  
-  build-and-e2e:
+      - build_and_test  
+  build_and_e2e:
     jobs:
-      - build-and-e2e    
+      - build_and_e2e    
