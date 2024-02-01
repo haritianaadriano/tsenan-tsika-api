@@ -1,6 +1,5 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { UserRole } from './enum/user-role.enum';
-import { CONFIGURABLE_MODULE_ID } from '@nestjs/common/module-utils/constants';
 
 @Entity()
 export class User {
@@ -13,7 +12,7 @@ export class User {
   @Column()
   lastname: string;
   @Column('varchar')
-  role: UserRole;
+  roles: UserRole;
   @Column()
   password: string;
   @Column()

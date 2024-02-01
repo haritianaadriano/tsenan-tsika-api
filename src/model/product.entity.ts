@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, IsNull, PrimaryColumn } from 'typeorm';
 import { ProductStatus } from './enum/product-status.enum';
 
 @Entity()
@@ -13,8 +13,8 @@ export class Product {
   description: string;
   @Column()
   price: number;
-  @Column()
+  @Column({ nullable: true })
   creationDatetime: Date;
-  @Column()
+  @Column({ nullable: true })
   updatedDatetime: Date;
 }
