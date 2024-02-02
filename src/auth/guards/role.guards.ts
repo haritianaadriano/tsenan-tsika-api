@@ -1,24 +1,47 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { Reflector } from '@nestjs/core';
-import { Observable } from 'rxjs';
-import { UserRole } from 'src/model/enum/user-role.enum';
-
-@Injectable()
-export class RolesGuard implements CanActivate {
-  constructor(private reflector: Reflector) {}
-
-  canActivate(
-    context: ExecutionContext,
-  ): boolean | Promise<boolean> | Observable<boolean> {
-    const requiredRoles = this.reflector.get<UserRole[]>(
-      'role',
-      context.getHandler(),
-    );
-    if (!requiredRoles) {
-      return true;
+import {
+    CanActivate,
+    ExecutionContext,
+    Injectable,
+    UnauthorizedException,
+  } from '@nestjs/common';
+  import { JwtService } from '@nestjs/jwt';
+  import { Request } from 'express';
+  import { jwtConstant } from '../constant';
+  import { Reflector } from '@nestjs/core';
+  import { IS_PUBLIC_KEY } from './../../module/decorator/public-access.decorator';
+  
+  @Injectable()
+  export class RoleGuard implements CanActivate {
+    constructor(private jwtService: JwtService, private reflector: Reflector) {}
+  
+    async canActivate(context: ExecutionContext): Promise<boolean> {
+      const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
+        context.getHandler(),
+        context.getClass(),
+      ]);
+      if (isPublic) {
+        return true;
+      }
+  
+      const request = context.switchToHttp().getRequest();
+      const token = this.extractTokenFromHeader(request);
+      if (!token) {
+        throw new UnauthorizedException();
+      }
+      try {
+        const payload = await this.jwtService.verifyAsync(token, {
+          secret: jwtConstant.secret,
+        });
+        request['user'] = payload;
+      } catch {
+        throw new UnauthorizedException();
+      }
+      return true && request['user'].isAdmin;
     }
-
-    const { user } = context.switchToHttp().getRequest();
-    return user.role === requiredRoles;
+  
+    private extractTokenFromHeader(request: Request): string | undefined {
+      const [type, token] = request.headers.authorization?.split(' ') ?? [];
+      return type === 'Bearer' ? token : undefined;
+    }
   }
-}
+  

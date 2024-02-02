@@ -22,7 +22,7 @@ export class AuthService {
       username: user.username,
       firstname: user.firstname,
       lastname: user.lastname,
-      role: user.roles,
+      isAdmin: user.isAdmin,
       password: user.password,
       email: user.email,
     };

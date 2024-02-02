@@ -11,8 +11,8 @@ export class User {
   firstname: string;
   @Column()
   lastname: string;
-  @Column('varchar')
-  roles: UserRole;
+  @Column()
+  isAdmin: boolean;
   @Column()
   password: string;
   @Column()
