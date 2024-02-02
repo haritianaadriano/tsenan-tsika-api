@@ -22,9 +22,7 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Signin'
+              $ref: '#/components/schemas/Signin'
       responses:
         '200':
           description: token
@@ -54,9 +52,7 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Signup'
+              $ref: '#/components/schemas/Signup'
       responses:
         '200':
           description: User created.
