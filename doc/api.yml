@@ -296,6 +296,11 @@ components:
     Signup:
       allOf:
         - $ref: '#/components/schemas/UserInfo'
+      properties:
+        username:
+          type: string
+        password:
+          type: string
     Product:
       allOf:
         - $ref: '#/components/schemas/ProductInfo'

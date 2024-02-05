@@ -1,20 +1,37 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
-import { UserRole } from './enum/user-role.enum';
 
 @Entity()
 export class User {
   @PrimaryColumn()
   id: string;
-  @Column()
+  @Column({ nullable: true })
   username: string;
   @Column()
   firstname: string;
   @Column()
   lastname: string;
-  @Column()
+  @Column({ default: false })
   isAdmin: boolean;
   @Column()
   password: string;
   @Column()
   email: string;
+
+  constructor() {}
+
+  setUsername(username: string) {
+    this.username = username;
+  }
+  setFirstname(firstname: string) {
+    this.firstname = firstname;
+  }
+  setLastname(lastname: string) {
+    this.lastname = lastname;
+  }
+  setEmail(email: string) {
+    this.email = email;
+  }
+  setPassword(password: string) {
+    this.password = password;
+  }
 }

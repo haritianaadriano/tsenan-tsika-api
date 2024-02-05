@@ -1,7 +1,9 @@
-export class UserApi {
+export class SignupApi {
   firstname: string;
   lastname: string;
   email: string;
+  username: string;
+  password: string;
 
   constructor() {}
 
@@ -13,5 +15,11 @@ export class UserApi {
   }
   setEmail(email: string) {
     this.email = email;
+  }
+  setUsername(username: string) {
+    this.username = username;
+  }
+  setPassword(password: string) {
+    this.password = password;
   }
 }

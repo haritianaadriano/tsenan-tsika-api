@@ -2,7 +2,7 @@ import { Body, Controller, Get, Put, UseGuards } from '@nestjs/common';
 import { Product } from '../model/product.entity';
 import { ProductService } from '../service/product.service';
 import { AuthGuard } from '../auth/guards/auth.guards';
-import { RoleGuard } from 'src/auth/guards/role.guards';
+import { RoleGuard } from '../auth/guards/role.guards';
 
 @Controller('/products')
 export class ProductController {
