@@ -4,6 +4,7 @@ import { AuthController } from '../auth/auth.controller';
 import { AuthService } from '../auth/auth.service';
 import { jwtConstant } from '../auth/constant';
 import { UserModule } from './user.module';
+import { UserMapper } from 'src/controller/mapper/user.mapper';
 
 @Module({
   imports: [
@@ -15,6 +16,6 @@ import { UserModule } from './user.module';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, UserMapper],
 })
 export class AuthModule {}
