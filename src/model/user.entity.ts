@@ -1,8 +1,9 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Product } from './product.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
   @Column({ nullable: true })
   username: string;
@@ -10,12 +11,14 @@ export class User {
   firstname: string;
   @Column()
   lastname: string;
-  @Column({ default: false })
+  @Column({ default: false, name: 'is_admin' })
   isAdmin: boolean;
   @Column()
   password: string;
   @Column()
   email: string;
+  @OneToMany(() => Product, (product) => product.author)
+  products: Product[];
 
   constructor() {}
 

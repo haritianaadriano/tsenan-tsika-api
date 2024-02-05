@@ -5,6 +5,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -14,6 +15,7 @@ import { ProductService } from '../service/product.service';
 import { AuthGuard } from '../auth/guards/auth.guards';
 import { RoleGuard } from '../auth/guards/role.guards';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { query } from 'express';
 
 @Controller('/products')
 export class ProductController {
@@ -25,10 +27,15 @@ export class ProductController {
     return this.productService.saveAll(toSave);
   }
 
-  @UseGuards(AuthGuard)
   @Get()
-  getProducts(): Promise<Product[]> {
-    return this.productService.getAll();
+  getProducts(
+    @Query() product_name: string | null,
+    @Query() user_username: string | null,
+  ): Promise<Product[]> {
+    return this.productService.getProductByCriteria(
+      user_username,
+      product_name,
+    );
   }
 
   @Post('/:id/picture/raw')
