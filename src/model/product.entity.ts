@@ -1,4 +1,4 @@
-import { Column, Entity, IsNull, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { ProductStatus } from './enum/product-status.enum';
 
 @Entity()
@@ -13,8 +13,14 @@ export class Product {
   description: string;
   @Column()
   price: number;
+  @Column({nullable: true, type: 'text'})
+  picture: string;
   @Column({ nullable: true })
   creationDatetime: Date;
   @Column({ nullable: true })
   updatedDatetime: Date;
+
+  setPicture(picture: string) {
+    this.picture = picture;
+  }
 }
