@@ -23,7 +23,10 @@ export class ProductService {
     return this.productRepository.findOneById(id);
   }
 
-  async uploadProductImage(id: string, picture: string): Promise<Product | null> {
+  async uploadProductImage(
+    id: string,
+    picture: string,
+  ): Promise<Product | null> {
     let result = await this.getOneById(id);
     result.setPicture(picture);
     return this.productRepository.save(result);

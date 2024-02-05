@@ -13,7 +13,7 @@ export class Product {
   description: string;
   @Column()
   price: number;
-  @Column({nullable: true, type: 'text'})
+  @Column({ nullable: true, type: 'text' })
   picture: string;
   @Column({ nullable: true })
   creationDatetime: Date;

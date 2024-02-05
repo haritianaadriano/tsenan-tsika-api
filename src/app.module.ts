@@ -17,10 +17,7 @@ import { UserModule } from './module/user.module';
     AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DATABASE_URL,
-      password: process.env.POSTGRES_PASSWORD,
-      username: process.env.POSTGRES_USER,
-      database: process.env.POSTGRES_DATABASE,
+      url: process.env.DATABASE_URL,
       entities: [Product, User],
       synchronize: true,
     }),
