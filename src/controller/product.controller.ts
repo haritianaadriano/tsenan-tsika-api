@@ -14,7 +14,6 @@ import { ProductService } from '../service/product.service';
 import { AuthGuard } from '../auth/guards/auth.guards';
 import { RoleGuard } from '../auth/guards/role.guards';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { readFileSync } from 'fs';
 
 @Controller('/products')
 export class ProductController {
