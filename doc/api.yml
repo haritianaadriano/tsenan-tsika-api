@@ -9,6 +9,68 @@ security:
 
 paths:
 
+  ## Security resources
+  '/auth/login':
+    post:
+      tags:
+        - Security
+      summary: authenticate user
+      operationId: signIn
+      requestBody:
+        description: User to authenticate.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Signin'
+      responses:
+        '200':
+          description: token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GivenToken'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+  '/auth/signup':
+    post:
+      tags:
+        - Security
+      summary: register user
+      operationId: signUp
+      requestBody:
+        description: User to register.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Signup'
+      responses:
+        '200':
+          description: User created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+
   ## Health resources
   '/ping':
     get:
@@ -196,6 +258,14 @@ components:
         - SOLD
         
     ## resource model
+    UserInfo:
+      properties:
+        firstname:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
     ProductInfo:
       properties:
         name:
@@ -203,6 +273,34 @@ components:
         creationDatetime:
           type: string
           format: date-time
+    Signin:
+      properties:
+        email:
+          type: string
+        password: 
+          type: string
+    GivenToken:
+      properties:
+        email:
+          type: string
+        token:
+          type: string
+    User:
+      allOf:
+        - $ref: '#/components/schemas/UserInfo'
+      properties:
+        password:
+          type: string
+        username:
+          type: string
+    Signup:
+      allOf:
+        - $ref: '#/components/schemas/UserInfo'
+      properties:
+        username:
+          type: string
+        password:
+          type: string
     Product:
       allOf:
         - $ref: '#/components/schemas/ProductInfo'

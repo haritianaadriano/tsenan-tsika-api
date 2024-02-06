@@ -7,14 +7,20 @@ export class Product {
   id: string;
   @Column()
   name: string;
-  @Column('text')
+  @Column({type: 'varchar', nullable: true})
   status: ProductStatus;
   @Column()
   description: string;
   @Column()
   price: number;
-  @Column()
+  @Column({ nullable: true, type: 'text' })
+  picture: string;
+  @Column({ nullable: true })
   creationDatetime: Date;
-  @Column()
+  @Column({ nullable: true })
   updatedDatetime: Date;
+
+  setPicture(picture: string) {
+    this.picture = picture;
+  }
 }
